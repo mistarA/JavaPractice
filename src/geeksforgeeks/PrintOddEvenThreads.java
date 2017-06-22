@@ -9,14 +9,17 @@ public class PrintOddEvenThreads {
 
     final OddEven lock = new OddEven();
 
+    final int MAX = 18;
+    final int MIN = 0;
+
     public static void main(String[] args) {
 
         PrintOddEvenThreads printOddEvenThreads = new PrintOddEvenThreads();
         Thread threadEven = new Thread(() -> {
             synchronized (printOddEvenThreads.lock) {
-                for (int i = 0; i < 19; i = i + 2) {
+                for (int i = printOddEvenThreads.MIN; i < printOddEvenThreads.MAX + 1; i = i + 2) {
                     if (printOddEvenThreads.lock.isEven) {
-                        System.out.println("Thread1: "+ i);
+                        System.out.println("Thread1: " + i);
                         printOddEvenThreads.lock.isEven = false;
                         printOddEvenThreads.lock.notify();
                         try {
@@ -31,7 +34,7 @@ public class PrintOddEvenThreads {
         });
         Thread threadOdd = new Thread(() -> {
             synchronized (printOddEvenThreads.lock) {
-                for (int i = 1; i < 18; i = i + 2) {
+                for (int i = printOddEvenThreads.MIN + 1; i < 18; i = i + 2) {
                     if (!printOddEvenThreads.lock.isEven) {
                         System.out.println("Thread2: " + i);
                         printOddEvenThreads.lock.isEven = true;
@@ -57,7 +60,6 @@ public class PrintOddEvenThreads {
     }
 
     class OddEven {
-        public int count = 0;
         public volatile boolean isEven = true;
     }
 }
