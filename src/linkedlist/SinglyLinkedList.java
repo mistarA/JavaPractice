@@ -15,6 +15,13 @@ public class SinglyLinkedList {
         list.insertAtEnd(5);
         list.insertAtEnd(6);
         list.insertAtEnd(7);
+        list.insertAtEnd(8);
+        list.insertAtEnd(9);
+        list.insertAtEnd(10);
+        list.insertAtEnd(11);
+        list.insertAtEnd(12);
+        list.insertAtEnd(13);
+        list.insertAtEnd(14);
 
         System.out.println("Singly Linked List Test\n");
         char ch;
@@ -31,6 +38,7 @@ public class SinglyLinkedList {
             System.out.println("8. Remove Kth position from end");
             System.out.println("9. Check if it is Palindrome");
             System.out.println("10. Make it circular");
+            System.out.println("11. Arrange Characters");
 
             int choice = scan.nextInt();
             switch (choice) {
@@ -83,6 +91,9 @@ public class SinglyLinkedList {
                     break;
                 case 10:
                     list.makeItCircular();
+                    break;
+                case 11:
+                    list.arrangeLinkedList();
                     break;
                 default:
                     System.out.println("Wrong Entry \n ");
