@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /*  Class SinglyLinkedList  */
@@ -39,6 +41,7 @@ public class SinglyLinkedList {
             System.out.println("9. Check if it is Palindrome");
             System.out.println("10. Make it circular");
             System.out.println("11. Arrange Characters");
+            System.out.println("12. Reverse Linked List");
 
             int choice = scan.nextInt();
             switch (choice) {
@@ -94,6 +97,9 @@ public class SinglyLinkedList {
                     break;
                 case 11:
                     list.arrangeLinkedList();
+                    break;
+                case 12:
+                    list.reverseALinkedList();
                     break;
                 default:
                     System.out.println("Wrong Entry \n ");

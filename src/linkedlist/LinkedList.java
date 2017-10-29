@@ -1,6 +1,8 @@
 package linkedlist;
 
+import javax.sound.sampled.Line;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -245,7 +247,25 @@ public class LinkedList implements Cloneable {
         }
     }
 
-    class Node {
+    public void reverseALinkedList() {
+        Node previousNode = head;
+        // 1 2 3 4 5 6
+        // 6 5 4 3 2 1
+
+        Node nextNode = previousNode.next;
+        previousNode.next = null;
+        while (nextNode != null) {
+            Node tempNext = nextNode.next;
+            nextNode.next = previousNode;
+            previousNode = nextNode;
+            nextNode = tempNext;
+            if (nextNode == null) {
+                head = previousNode;
+            }
+        }
+    }
+
+    public class Node implements Comparator<Node>{
         Integer data;
         Node next;
 
@@ -269,6 +289,11 @@ public class LinkedList implements Cloneable {
         @Override
         public String toString() {
             return this.getData().toString() + "---";
+        }
+
+        @Override
+        public int compare(Node o1, Node o2) {
+            return 0;
         }
     }
 
