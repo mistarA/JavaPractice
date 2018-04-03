@@ -14,7 +14,7 @@ public class AbsoluteDistinctCount {
         int testCases = scan.nextInt();
         for (int i = 0 ; i < testCases; i++) {
             int size = scan.nextInt();
-            List<Integer> numbers = new ArrayList<>();
+            List<Integer> numbers = new ArrayList<Integer>();
             for (int j = 0; j < size; j++){
                 int number = Math.abs(scan.nextInt());
                 if (!numbers.contains(number)){

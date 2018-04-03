@@ -85,7 +85,7 @@ public class LinkedList implements Cloneable {
         //This will break the connection from the middle
         middleElement.next = null;
         fastPtr = head;
-        List<Node> elements = new ArrayList<>();
+        List<Node> elements = new ArrayList<Node>();
         while (fastPtr != null) {
             Node tempFastPtr = fastPtr.next;
             fastPtr.next = slowPtr;
@@ -168,7 +168,7 @@ public class LinkedList implements Cloneable {
     public boolean isPalindrome() {
 
         Node tempHead = head;
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<Integer>();
         while (tempHead.next != null) {
             if (numbers.contains(tempHead.data)) {
                 numbers.remove(numbers.indexOf(tempHead.data));
@@ -291,7 +291,6 @@ public class LinkedList implements Cloneable {
             return this.getData().toString() + "---";
         }
 
-        @Override
         public int compare(Node o1, Node o2) {
             return 0;
         }

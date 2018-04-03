@@ -10,8 +10,8 @@ public class NonDivisibleSubsets {
     public static void main(String[] args) {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named randomExamples.Solution. */
         Scanner in = new Scanner(System.in);
-        Set<Integer> newSet = new HashSet<>();
-        List<Integer> inputs = new ArrayList<>();
+        Set<Integer> newSet = new HashSet<Integer>();
+        List<Integer> inputs = new ArrayList<Integer>();
 
         int size = in.nextInt();
         int k = in.nextInt();

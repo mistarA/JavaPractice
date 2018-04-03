@@ -16,7 +16,7 @@ public class Pangrams {
         String output = "pangram";
         s = s.toLowerCase();
         s = s.replaceAll(" ","");
-        List<Integer> characters = new ArrayList<>();
+        List<Integer> characters = new ArrayList<Integer>();
         for (int i = 0; i < s.length(); i++) {
             if (!characters.contains((int)s.charAt(i))) {
                 characters.add((int)s.charAt(i));

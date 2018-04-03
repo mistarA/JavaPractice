@@ -11,7 +11,7 @@ public class GrabAirplane {
 
         int n = 1;
         String reservedStrings = "1A 1G 1D";
-        Map<Integer, ArrayList<Character>> occurrences = new HashMap<>();
+        Map<Integer, ArrayList<Character>> occurrences = new HashMap<Integer, ArrayList<Character>>();
         String[] arr = reservedStrings.split(" ");
         for (String input : arr) {
             Character column = input.charAt(input.length() - 1);
@@ -19,7 +19,7 @@ public class GrabAirplane {
             if (occurrences.get(rowNumber) != null) {
                 occurrences.get(rowNumber).add(column);
             } else {
-                ArrayList<Character> columns = new ArrayList<>();
+                ArrayList<Character> columns = new ArrayList<Character>();
                 columns.add(column);
                 occurrences.put(rowNumber, columns);
             }

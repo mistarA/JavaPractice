@@ -19,8 +19,8 @@ public class AlternatingCharacters {
 
         }
 
-        List<Integer> a1 = new ArrayList<>();
-        List<Integer> a2 = new ArrayList<>();
+        List<Integer> a1 = new ArrayList<Integer>();
+        List<Integer> a2 = new ArrayList<Integer>();
         a1.add(1);
         a1.add(2);
         a1.add(3);

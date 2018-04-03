@@ -10,7 +10,7 @@ public class ClosestNumbers {
 	public static void main(String[] args) {
 		/* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named randomExamples.Solution. */
 		Scanner in = new Scanner(System.in);
-		List<Integer> inputList = new ArrayList<>();
+		List<Integer> inputList = new ArrayList<Integer>();
 		int n = in.nextInt(); // size of array
 		int[] a = new int[n];
 		for(int a_i=0; a_i < n; a_i++){

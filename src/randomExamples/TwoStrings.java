@@ -17,7 +17,7 @@ public class TwoStrings {
             String output = "NO";
             String first = in.next();
             String second = in.next();
-            List<Character> characters = new ArrayList<>();
+            List<Character> characters = new ArrayList<Character>();
             for( int j = 0; j < first.length(); j++){
                 if(!characters.contains(first.charAt(j))){
                     characters.add(first.charAt(j));

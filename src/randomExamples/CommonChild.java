@@ -14,8 +14,8 @@ public class CommonChild {
         Scanner in = new Scanner(System.in);
         String str1 = in.nextLine();
         String str2 = in.nextLine();
-        List<Character> inputs1 = new ArrayList<>();
-        List<Character> inputs2 = new ArrayList<>();
+        List<Character> inputs1 = new ArrayList<Character>();
+        List<Character> inputs2 = new ArrayList<Character>();
         int count = 0;
         for (int i = 0; i < str1.length(); i++) {
             inputs1.add(str1.charAt(i));

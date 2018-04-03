@@ -15,7 +15,7 @@ public class CutTheSticks {
 		Scanner scan = new Scanner(System.in);
 		int number = scan.nextInt();
 		scan.nextLine();
-		List<Integer> inputList = new ArrayList<>();
+		List<Integer> inputList = new ArrayList<Integer>();
 		for( int i = 0; i< number ; i++){
 			inputList.add(scan.nextInt());
 		}

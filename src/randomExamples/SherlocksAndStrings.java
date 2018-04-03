@@ -8,10 +8,10 @@ public class SherlocksAndStrings {
 
         Scanner scan = new Scanner(System.in);
         String input = scan.nextLine();
-        Set<Character> chars = new HashSet<>();
-        Set<Integer> sameValueOccurrenceCheckSet = new HashSet<>();
-        List<Integer> occurValues = new ArrayList<>();
-        List<Character> characters = new ArrayList<>();
+        Set<Character> chars = new HashSet<Character>();
+        Set<Integer> sameValueOccurrenceCheckSet = new HashSet<Integer>();
+        List<Integer> occurValues = new ArrayList<Integer>();
+        List<Character> characters = new ArrayList<Character>();
         boolean isValid = false;
         int length = input.length();
         for (int i = 0; i < length; i++) {

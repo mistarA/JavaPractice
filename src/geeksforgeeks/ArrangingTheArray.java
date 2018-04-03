@@ -13,8 +13,8 @@ public class ArrangingTheArray {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int testCases = scan.nextInt();
-        List<Integer> positiveList = new ArrayList<>();
-        List<Integer> negativeList = new ArrayList<>();
+        List<Integer> positiveList = new ArrayList<Integer>();
+        List<Integer> negativeList = new ArrayList<Integer>();
         for (int i = 0 ; i < testCases; i++){
             int size = scan.nextInt();
             positiveList.clear();

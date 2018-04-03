@@ -16,7 +16,7 @@ public class TwoCharacters {
         int len = in.nextInt();
         String s = in.next();
         int maxLength = Integer.MIN_VALUE;
-        List<Character> characters = new ArrayList<>();
+        List<Character> characters = new ArrayList<Character>();
         for (int i = 0; i < len; i++) {
             if (!characters.contains(s.charAt(i))) {
                 characters.add(s.charAt(i));
@@ -50,7 +50,7 @@ public class TwoCharacters {
     public static boolean isValid(String s) {
 
         boolean isValid = true;
-        List<Character> characters = new ArrayList<>();
+        List<Character> characters = new ArrayList<Character>();
         for (int i = 0; i < s.length(); i++) {
             if (!characters.contains(s.charAt(i))) {
                 characters.add(s.charAt(i));

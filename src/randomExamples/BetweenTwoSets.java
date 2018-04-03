@@ -15,7 +15,7 @@ public class BetweenTwoSets {
         for(int a_i=0; a_i < n; a_i++){
             a[a_i] = in.nextInt();
         }
-        List<Integer> factors = new ArrayList<>();
+        List<Integer> factors = new ArrayList<Integer>();
         for(int i =0; i < a.length-2; i++){
             int num1 = a[i];
             int num2 = a[i+1];

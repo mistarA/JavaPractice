@@ -12,7 +12,7 @@ public class SockMerchant {
 		int n = in.nextInt();
 		int c[] = new int[n];
 		int total = 0;
-		Set<Integer> checkedData = new HashSet<>();
+		Set<Integer> checkedData = new HashSet<Integer>();
 		for(int c_i = 0; c_i < n; c_i++){
 			c[c_i] = in.nextInt();
 			checkedData.add(c[c_i]);
