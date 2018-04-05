@@ -4,6 +4,7 @@ import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by anandmishra on 18/07/17.
@@ -37,12 +38,32 @@ public class LinkedList implements Cloneable {
         System.out.print(ptr.getData() + "\n");
     }
 
+    public void insertAtEnd(int i) {
+        //Insert at end could be first element
+        if (head == null) {
+            head = new Node(i, null);
+        } else {
+            Node newNode = new Node(i, null);
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+        size++;
+    }
+
+    //x + 2y + z  =   x + y
+    //----------      ------
+    //     2x      =     x
+
+    // x = z
     private boolean isCircular() {
 
         Node slowPtr = head;
         Node fastPtr = head;
         boolean isCircularFlag = false;
-        while (fastPtr != null && fastPtr.next != null && fastPtr.next.next != null) {
+        while (fastPtr != null && fastPtr.next != null) {
             slowPtr = slowPtr.next;
             fastPtr = fastPtr.next.next;
             if (slowPtr.equals(fastPtr)) {
@@ -51,11 +72,6 @@ public class LinkedList implements Cloneable {
                 break;
             }
         }
-        //x + 2y + z  =   x + y
-        //----------      ------
-        //     2x      =     x
-
-        // x = z
         //printLoopStartingPoint
         if (isCircularFlag) {
             Node tempHead = head;
@@ -97,21 +113,6 @@ public class LinkedList implements Cloneable {
         System.out.print(elements);
     }
 
-    public void insertAtEnd(int i) {
-        //Insert at end could be first element
-        if (head == null) {
-            head = new Node(i, null);
-        } else {
-            Node newNode = new Node(i, null);
-            Node temp = head;
-            while (temp.next != null) {
-                temp = temp.next;
-            }
-            temp.next = newNode;
-        }
-        size++;
-    }
-
     public void makeItCircular() {
 
         Node tempHead = head;
@@ -139,48 +140,55 @@ public class LinkedList implements Cloneable {
             head = newNode;
             newNode.setNextNode(temp);
         }
-        size++;
     }
 
     public void removeKthFromEnd(int position) {
-        Node temp1 = head;
-        Node temp2 = head;
-        boolean flagSizeExceeded = false;
-        for (int i = 2; i <= position; i++) {
-            if (temp2.next != null) {
-                temp2 = temp2.next;
+        Node p1 = head;
+        Node p2 = head;
+        for (int i = 0; i < position; i++) {
+            if (p2.next!= null) {
+                p2 = p2.next;
             } else {
-                flagSizeExceeded = true;
-                break;
+                System.out.println("Out of bounds");
             }
         }
-        if (flagSizeExceeded) {
-            System.out.print("Value  " + temp2.getData());
-        } else {
-            while (temp2.next != null) {
-                temp1 = temp1.next;
-                temp2 = temp2.next;
-            }
+        while(p2 != null && p2.next!= null) {
+            p1 = p1.next;
+            p2 = p2.next;
         }
-        System.out.print(temp1.getData());
+
+        //Delete p1
+        p1.data = p1.next.data;
+        p1.next = p1.next.next;
     }
 
     public boolean isPalindrome() {
+        //Odd size list
+        //Slow ptr will be at middle
+        //Even Size list
+        //slowPtr will be at
+        // 1 2 3 4 5 4 3 2 1
 
-        Node tempHead = head;
-        List<Integer> numbers = new ArrayList<Integer>();
-        while (tempHead.next != null) {
-            if (numbers.contains(tempHead.data)) {
-                numbers.remove(numbers.indexOf(tempHead.data));
-            } else {
-                numbers.add(tempHead.data);
+        // 1 2 3 3 2 1
+        Node slowPtr = head;
+        Node fastPtr = head;
+        Stack<Node> entries = new Stack<>();
+        while(fastPtr != null && fastPtr.next != null) {
+            entries.push(slowPtr);
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        if (fastPtr != null) {
+            slowPtr = slowPtr.next;
+        }
+        while (slowPtr != null) {
+            int value = entries.pop().data;
+            if (value != slowPtr.data) {
+                return false;
             }
-            tempHead = tempHead.next;
+            slowPtr = slowPtr.next;
         }
-        if (numbers.size() == 1) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     public void insertAtPos(int num, int pos) {
@@ -227,24 +235,25 @@ public class LinkedList implements Cloneable {
         size--;
     }
 
+    //Sorted List
+    //Linked List = 1->2->3->3->3->6->7->8->9->10->11->12->13
     public void removeDuplicates() {
-
-        Node headTemp = head;
-        while (headTemp != null && headTemp.next != null) {
-            Node nodeToBeCompared = headTemp.next;
-            Node previousNode = headTemp;
-
-            while (nodeToBeCompared != null) {
-                if (nodeToBeCompared.getData().equals(headTemp.getData())) {
-                    previousNode.next = nodeToBeCompared.next;
-                    size--;
-                } else {
-                    previousNode = nodeToBeCompared;
-                }
-                nodeToBeCompared = nodeToBeCompared.next;
-            }
-            headTemp = headTemp.next;
+        int sizeOfList = 0;
+        if(head == null || size == 1){
+            return;
         }
+        Node current = head;
+        Node nextNode = head.next;
+        while (current != null && current.next != null) {
+            while (nextNode != null && current.data.equals(nextNode.data)) {
+                nextNode = nextNode.next;
+            }
+            current.next = nextNode;
+            current = current.next;
+            sizeOfList++;
+        }
+        size = sizeOfList;
+
     }
 
     public void reverseALinkedList() {
@@ -252,20 +261,36 @@ public class LinkedList implements Cloneable {
         // 1 2 3 4 5 6
         // 6 5 4 3 2 1
 
+        Node nextNode = previousNode.next; // 2
+        previousNode.next = null; // 1- null
+        while (nextNode != null) {
+            Node tempNext = nextNode.next; // 3
+            nextNode.next = previousNode; // 2 - 1
+            previousNode = nextNode; // 2
+            nextNode = tempNext; // 3
+            if (nextNode == null) {
+                head = previousNode; // last element
+            }
+        }
+    }
+
+    public void reverseLinkedList() {
+        // 1 2 3 4 5 6
+        Node previousNode = head;
         Node nextNode = previousNode.next;
         previousNode.next = null;
-        while (nextNode != null) {
-            Node tempNext = nextNode.next;
-            nextNode.next = previousNode;
+        while(nextNode != null) {
+            Node tempNextNode = nextNode.next; // 3
+            nextNode.next = previousNode;// 2 - 1
             previousNode = nextNode;
-            nextNode = tempNext;
+            nextNode = tempNextNode;
             if (nextNode == null) {
                 head = previousNode;
             }
         }
     }
 
-    public class Node implements Comparator<Node>{
+    public class Node implements Comparator<Node> {
         Integer data;
         Node next;
 
@@ -292,7 +317,7 @@ public class LinkedList implements Cloneable {
         }
 
         public int compare(Node o1, Node o2) {
-            return 0;
+            return o1.data - o2.data;
         }
     }
 
