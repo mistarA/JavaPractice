@@ -87,8 +87,6 @@ public class LinkedList implements Cloneable {
     //a1 a2 a3 a4 .. an b1 b2 b3 b4 .. bn
     // a1 b1 a2 b2 a3 b3 a4 b4 .. an bn
     public void arrangeLinkedList() {
-        //First lets go to the middle of the linked list so that we can start replacing the characters
-        //We are going to use the Runner Technique over here
         Node slowPtr = head;
         Node fastPtr = head;
         while (fastPtr != null && fastPtr.next != null && fastPtr.next.next != null) {
@@ -101,7 +99,6 @@ public class LinkedList implements Cloneable {
         //This will break the connection from the middle
         middleElement.next = null;
         fastPtr = head;
-        List<Node> elements = new ArrayList<Node>();
         while (fastPtr != null) {
             Node tempFastPtr = fastPtr.next;
             fastPtr.next = slowPtr;
@@ -110,7 +107,6 @@ public class LinkedList implements Cloneable {
             fastPtr.next = tempFastPtr;
             fastPtr = fastPtr.next;
         }
-        System.out.print(elements);
     }
 
     public void makeItCircular() {
@@ -146,13 +142,13 @@ public class LinkedList implements Cloneable {
         Node p1 = head;
         Node p2 = head;
         for (int i = 0; i < position; i++) {
-            if (p2.next!= null) {
+            if (p2.next != null) {
                 p2 = p2.next;
             } else {
                 System.out.println("Out of bounds");
             }
         }
-        while(p2 != null && p2.next!= null) {
+        while (p2 != null && p2.next != null) {
             p1 = p1.next;
             p2 = p2.next;
         }
@@ -173,7 +169,7 @@ public class LinkedList implements Cloneable {
         Node slowPtr = head;
         Node fastPtr = head;
         Stack<Node> entries = new Stack<>();
-        while(fastPtr != null && fastPtr.next != null) {
+        while (fastPtr != null && fastPtr.next != null) {
             entries.push(slowPtr);
             slowPtr = slowPtr.next;
             fastPtr = fastPtr.next.next;
@@ -239,7 +235,7 @@ public class LinkedList implements Cloneable {
     //Linked List = 1->2->3->3->3->6->7->8->9->10->11->12->13
     public void removeDuplicates() {
         int sizeOfList = 0;
-        if(head == null || size == 1){
+        if (head == null || size == 1) {
             return;
         }
         Node current = head;
@@ -270,22 +266,6 @@ public class LinkedList implements Cloneable {
             nextNode = tempNext; // 3
             if (nextNode == null) {
                 head = previousNode; // last element
-            }
-        }
-    }
-
-    public void reverseLinkedList() {
-        // 1 2 3 4 5 6
-        Node previousNode = head;
-        Node nextNode = previousNode.next;
-        previousNode.next = null;
-        while(nextNode != null) {
-            Node tempNextNode = nextNode.next; // 3
-            nextNode.next = previousNode;// 2 - 1
-            previousNode = nextNode;
-            nextNode = tempNextNode;
-            if (nextNode == null) {
-                head = previousNode;
             }
         }
     }
