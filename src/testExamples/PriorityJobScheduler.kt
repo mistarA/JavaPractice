@@ -21,7 +21,8 @@ enum class JobPriority {
 
     //Whichever comes first will get high priority
     HIGH,
-    MEDIUM, LOW
+    MEDIUM,
+    LOW
 }
 
 class PriorityJobScheduler(poolSize: Int, queueSize: Int) {
@@ -31,7 +32,7 @@ class PriorityJobScheduler(poolSize: Int, queueSize: Int) {
     var priorityJobQueue: PriorityBlockingQueue<Job>
 
     init {
-        priorityJobQueue = PriorityBlockingQueue(queueSize, Comparator.comparing(Job::jobPriority))
+        priorityJobQueue = PriorityBlockingQueue(queueSize) { o1, o2 -> o1.jobPriority.compareTo(o2.jobPriority) }
         priorityJobPoolExecutor = Executors.newFixedThreadPool(poolSize)
         priorityJobScheduler.execute({
 
