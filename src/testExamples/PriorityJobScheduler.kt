@@ -21,8 +21,7 @@ enum class JobPriority {
 
     //Whichever comes first will get high priority
     HIGH,
-    MEDIUM,
-    LOW
+    MEDIUM, LOW
 }
 
 class PriorityJobScheduler(poolSize: Int, queueSize: Int) {
@@ -32,7 +31,7 @@ class PriorityJobScheduler(poolSize: Int, queueSize: Int) {
     var priorityJobQueue: PriorityBlockingQueue<Job>
 
     init {
-        priorityJobQueue = PriorityBlockingQueue(queueSize) { o1, o2 -> o1.jobPriority.compareTo(o2.jobPriority) }
+        priorityJobQueue = PriorityBlockingQueue(queueSize, Comparator.comparing(Job::jobPriority))
         priorityJobPoolExecutor = Executors.newFixedThreadPool(poolSize)
         priorityJobScheduler.execute({
 
@@ -64,7 +63,7 @@ fun main(args: Array<String>) {
     val job5 = Job("Job5", JobPriority.LOW)
     val job6 = Job("Job6", JobPriority.HIGH)
 
-    val priorityJobScheduler = PriorityJobScheduler(2, 6)
+    val priorityJobScheduler = PriorityJobScheduler(3, 6)
     priorityJobScheduler.scheduleJob(job1)
     priorityJobScheduler.scheduleJob(job2)
     priorityJobScheduler.scheduleJob(job3)
